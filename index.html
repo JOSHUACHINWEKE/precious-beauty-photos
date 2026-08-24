@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precious Beauty Photos | Dallas, TX Family &amp; Lifestyle Portraits</title>
+<meta name="description" content="Precious Beauty Photos — natural-light family, newborn, couples, and lifestyle portraits in Dallas–Fort Worth, Texas.">
+
+<!--
+  PLACEHOLDER NOTICE FOR THE STUDIO OWNER / DEVELOPER
+  =====================================================
+  This site is organized as:
+    index.html   — structure/content only
+    css/styles.css — all visual styling
+    js/config.js   — editable business data (edit THIS for day-to-day changes)
+    js/main.js     — site behavior (shouldn't need to touch this for content changes)
+    images/        — photos
+
+  Things to update in js/config.js:
+  - bookingUrl: currently '#'. Once you set up a free Square Appointments
+    account, paste your real booking page URL here.
+  - whatsappNumber: the number the Contact form sends inquiries to.
+  - faqs / portfolio categories: edit copy here, not in the HTML.
+
+  Things to update in this file:
+  - The photographer name "[Photographer Name]" on the About page is a
+    placeholder — search for it and swap in the real name.
+  - Every .frame element without an <img> inside it is a placeholder for a
+    real photograph — swap in <img class="frame-photo" src="..."> once
+    real photos are supplied.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Libre+Franklin:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Parisienne&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+
+<script src="js/config.js" defer></script>
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand" data-page="home">Precious <span>Beauty</span> Photos</a>
+    <nav class="links" id="navLinks">
+      <a href="#home" data-page="home" class="active">Home</a>
+      <a href="#portfolio" data-page="portfolio">Portfolio</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+      <a href="#contact" data-page="contact" class="nav-cta">
+  Book a Session
+</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<main id="page-home" class="page active">
+
+  <section class="hero">
+    <span class="sparkle s1"></span>
+    <span class="sparkle s2"></span>
+    <span class="sparkle s3"></span>
+    <span class="sparkle s4"></span>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Dallas–Fort Worth &middot; Family &amp; Lifestyle Portraits</span>
+        <h1>Portraits that<br>feel like <em>home.</em></h1>
+        <p class="lead">Natural light, real laughter, and the small in-between moments — kept, not staged. Family, newborn, couples, and lifestyle sessions across the Dallas metroplex.</p>
+        <div class="hero-ctas">
+          <a href="#contact" data-page="contact" class="btn">Book a Session</a>
+          <a href="#portfolio" data-page="portfolio" class="btn ghost">View Portfolio</a>
+        </div>
+      </div>
+      <div class="polaroid reveal">
+        <div class="frame" data-caption="Precious Beauty Photos">
+          <img class="frame-photo" src="images/about-photographer.jpg" alt="Precious Beauty Photos">
+          <div class="cap"><span>N&deg; 001</span><b>EXP</b></div>
+        </div>
+        <div class="poltext">Precious Beauty Photos</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="flourish">
+    <span class="fl-line"></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C12 2 13.5 7 12 12C10.5 7 12 2 12 2Z" fill="#C6A15B"/>
+      <path d="M12 22C12 22 10.5 17 12 12C13.5 17 12 22 12 22Z" fill="#C6A15B"/>
+      <path d="M2 12C2 12 7 10.5 12 12C7 13.5 2 12 2 12Z" fill="#6B2F97"/>
+      <path d="M22 12C22 12 17 13.5 12 12C17 10.5 22 12 22 12Z" fill="#6B2F97"/>
+    </svg>
+    <span class="fl-line rev"></span>
+  </div>
+
+  <section class="tight">
+    <div class="wrap u-narrow u-text-center">
+      <p class="u-pull-quote">
+        "I photograph families the way they actually are — a little chaotic, mostly happy, and worth remembering exactly like that."
+      </p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Services</span>
+        <h2>Sessions for every chapter</h2>
+      </div>
+    </div>
+    <div class="wrap u-filmstrip-wrap">
+      <div class="filmstrip">
+        <div class="filmcell">
+          <span class="fnum">N&deg; 01 &middot; EXP</span>
+          <h3>Family Sessions</h3>
+          <p>Golden-hour portraits for growing families — outdoors, unposed, and led by your kids' actual attention spans.</p>
+          <a href="#portfolio" data-page="portfolio">View work</a>
+        </div>
+        <div class="filmcell">
+          <span class="fnum">N&deg; 02 &middot; EXP</span>
+          <h3>Newborn &amp; Baby</h3>
+          <p>Quiet, in-home portraits of the first weeks — soft light, tiny fingers, and the exhausted, glowing look on your face.</p>
+          <a href="#portfolio" data-page="portfolio">View work</a>
+        </div>
+        <div class="filmcell">
+          <span class="fnum">N&deg; 03 &middot; EXP</span>
+          <h3>Couples &amp; Engagement</h3>
+          <p>For the two of you, before the vows — or just because. Easy, playful, a little bit in love with the camera off.</p>
+          <a href="#portfolio" data-page="portfolio">View work</a>
+        </div>
+        <div class="filmcell">
+          <span class="fnum">N&deg; 04 &middot; EXP</span>
+          <h3>Lifestyle &amp; Branding</h3>
+          <p>Everyday portraits with personality — headshots, personal branding, and in-home stories for the self-employed.</p>
+          <a href="#portfolio" data-page="portfolio">View work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+  <div class="wrap">
+
+    <div class="section-head u-flex-between u-no-max">
+      <div>
+        <span class="eyebrow">Portfolio</span>
+        <h2 class="u-mt-14">A few favorites</h2>
+      </div>
+
+      <a href="#portfolio" data-page="portfolio" class="btn ghost">
+        View Full Portfolio
+      </a>
+    </div>
+
+    <div class="gallery">
+
+      <div class="frame g-tall reveal">
+        <img
+          class="frame-photo"
+          src="images/DSC09245-1.jpg-bright.jpg"
+          alt="Family Photography"
+        >
+        <div class="cap">
+          <span>FAM·014</span>
+          <b>Prairie Fields</b>
+        </div>
+      </div>
+
+      <div class="frame g-wide reveal">
+        <img
+          class="frame-photo"
+          src="images/DSC01818.jpg"
+          alt="Newborn Photography"
+        >
+        <div class="cap">
+          <span>NB·006</span>
+          <b>First Week</b>
+        </div>
+      </div>
+
+      <div class="frame g-square reveal">
+        <img
+          class="frame-photo"
+          src="images/DSC01784 (1).jpg"
+          alt="Couple Photography"
+        >
+        <div class="cap">
+          <span>CPL·021</span>
+          <b>Bishop Arts</b>
+        </div>
+      </div>
+
+      <div class="frame g-square reveal">
+        <img
+          class="frame-photo"
+          src="images/DSC00456.jpg"
+          alt="Family Photography"
+        >
+        <div class="cap">
+          <span>FAM·009</span>
+          <b>Backyard Evening</b>
+        </div>
+      </div>
+
+      <div class="frame g-wide reveal">
+        <img
+          class="frame-photo"
+          src="images/DSC01784.jpg"
+          alt="Lifestyle Photography"
+        >
+        <div class="cap">
+          <span>LS·003</span>
+          <b>Home Studio</b>
+        </div>
+      </div>
+
+      <div class="frame g-tall reveal">
+        <img
+          class="frame-photo"
+          src="images/DSC09546 1.jpg"
+          alt="Family Photography"
+        >
+        <div class="cap">
+          <span>FAM·027</span>
+          <b>Klyde Warren Park</b>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>From first email to framed print</h2>
+      </div>
+      <div class="process">
+        <div class="p-step"><div class="pnum">01</div><h4>Consultation</h4><p>A short call or email to talk through location, outfits, and what "good" looks like for your family.</p></div>
+        <div class="p-step"><div class="pnum">02</div><h4>The Session</h4><p>45–60 relaxed minutes. Loose direction, real interaction, minimal "look at the camera and smile."</p></div>
+        <div class="p-step"><div class="pnum">03</div><h4>Sneak Peek</h4><p>2–3 favorites, edited and delivered within 48 hours, so the excitement doesn't have to wait.</p></div>
+        <div class="p-step"><div class="pnum">04</div><h4>Gallery Delivery</h4><p>Your full gallery arrives in 2–3 weeks — online, downloadable, and ready for print.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap testi">
+      <div class="polaroid">
+        <div class="frame" data-caption="The Alvarez Family"><div class="cap"><span>N&deg; 014</span><b>EXP</b></div></div>
+      </div>
+      <div>
+        <blockquote>"Our session at White Rock Lake felt effortless. Precious Beauty Photos captured our family exactly as we are — not posed, just us."</blockquote>
+        <cite>— The Alvarez Family, Family Session</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap u-narrow">
+      <div class="section-head u-no-max">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div id="faqList"></div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="wrap">
+      <span class="eyebrow">Let's talk</span>
+      <h2>Let's make something worth printing.</h2>
+      <a href="#contact" data-page="contact" class="btn on-dark">Book a Session</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ PORTFOLIO ============ -->
+<main id="page-portfolio" class="page">
+  <section class="u-section-top">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Portfolio</span>
+        <h2>The full roll</h2>
+        <p class="u-text-muted u-mt-14 u-max-56">A selection of family, newborn, couples, and lifestyle sessions from across Dallas–Fort Worth. Filter by category, or just scroll.</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="portrait">Portrait Photography</button>
+        <button class="filter-btn" data-filter="newborn">Newborn Photography</button>
+        <button class="filter-btn" data-filter="wedding">Wedding Photography</button>
+        <button class="filter-btn" data-filter="event">Event Photography</button>
+        <button class="filter-btn" data-filter="corporate">Corporate Headshots</button>
+        <button class="filter-btn" data-filter="birthday">Birthday Sessions</button>
+        <button class="filter-btn" data-filter="family">Family Photography</button>
+        <button class="filter-btn" data-filter="graduation">Graduation Shoots</button>
+        <button class="filter-btn" data-filter="studio">Studio Photography</button>
+      </div>
+      <p id="portfolioCount"></p>
+      <div class="gallery" id="portfolioGrid"><!-- populated by PortfolioGrid module in js/main.js, from SITE_CONFIG.portfolio in js/config.js --></div>
+    </div>
+  </section>
+  <section class="cta-banner">
+    <div class="wrap">
+      <span class="eyebrow">Like what you see</span>
+      <h2>Your family's roll starts here.</h2>
+      <a href="#contact" data-page="contact" class="btn on-dark">Book a Session</a>
+    </div>
+  </section>
+</main>
+
+<!-- ============ ABOUT ============ -->
+<main id="page-about" class="page">
+  <section class="u-section-top">
+    <div class="wrap about-hero">
+      <div class="polaroid polaroid--tilt-left">
+        <div class="frame">
+          <img class="frame-photo" src="images/about-photographer.jpg" alt="[Photographer Name], Precious Beauty Photos">
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">About</span>
+        <h2 class="about-heading">Hi, I'm Precious Emmanuela.</h2>
+        <p>
+          I started Precious Beauty Photos after realizing most of my own family photos were phone snapshots taken mid-argument about nap time — and that the ones I actually treasured were never the posed ones. Ten years and a few hundred sessions later, that's still the whole point: real light, real people, minimal fuss.
+        </p>
+        <p>
+          Based in Pennsylvania USA, I photograph families, newborns, couples, and small businesses across the metroplex — from White Rock Lake at golden hour to living-room floors covered in toys. Wherever your family actually happens.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="flourish">
+    <span class="fl-line"></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C12 2 13.5 7 12 12C10.5 7 12 2 12 2Z" fill="#C6A15B"/>
+      <path d="M12 22C12 22 10.5 17 12 12C13.5 17 12 22 12 22Z" fill="#C6A15B"/>
+      <path d="M2 12C2 12 7 10.5 12 12C7 13.5 2 12 2 12Z" fill="#6B2F97"/>
+      <path d="M22 12C22 12 17 13.5 12 12C17 10.5 22 12 22 12Z" fill="#6B2F97"/>
+    </svg>
+    <span class="fl-line rev"></span>
+  </div>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Approach</span>
+        <h2>What I believe about portraits</h2>
+      </div>
+      <div class="values">
+        <div class="value-card">
+          <h4>Light over gear</h4>
+          <p>Natural, available light — window light, open shade, golden hour — over heavy studio setups. It's softer, and it's honest.</p>
+        </div>
+        <div class="value-card">
+          <h4>Direction, not posing</h4>
+          <p>I give you something to do together, not a pose to hold. The good expressions happen in the seconds after the instruction.</p>
+        </div>
+        <div class="value-card">
+          <h4>Prints outlive feeds</h4>
+          <p>Every gallery is built to be printed — albums, wall art, the stuff that's still around in twenty years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap u-narrow">
+      <div class="section-head u-no-max">
+        <span class="eyebrow">Behind the lens</span>
+        <h2>A few quick facts</h2>
+      </div>
+      <ul class="facts-list">
+        <li>&middot; Based in Pennsylvania USA — shooting across the DFW metroplex</li>
+        <li>&middot; Shoots primarily on location — parks, homes, and downtown streets</li>
+        <li>&middot; Second-generation Texan, first-generation dog mom</li>
+        <li>&middot; Believes the best light is 45 minutes before sunset</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="wrap">
+      <span class="eyebrow">Let's meet</span>
+      <h2>I'd love to hear your story.</h2>
+      <a href="#contact" data-page="contact" class="btn on-dark">Get in Touch</a>
+    </div>
+  </section>
+</main>
+
+<!-- ============ CONTACT ============ -->
+<main id="page-contact" class="page">
+  <section class="u-section-top">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's find your date</h2>
+        <p class="u-text-muted u-mt-14 u-max-56">Tell me a bit about what you're picturing, and I'll reply within 24 hours to talk through availability and next steps.</p>
+      </div>
+
+      <!-- Booking widget: href is set at runtime by the BookingWidget module
+           in js/main.js, from SITE_CONFIG.bookingUrl in js/config.js. -->
+      <div class="book-widget">
+        <div>
+          <span class="eyebrow">Fastest way to book</span>
+          <h3>Book &amp; pay online</h3>
+          <p>See real-time availability, pick your session, and secure your date with a deposit — all in one step.</p>
+        </div>
+        <a href="#" id="bookNowLink" class="btn on-dark" target="_blank" rel="noopener">Book &amp; Pay Now</a>
+      </div>
+      <p class="book-widget-hint">Prefer to talk first? Send an inquiry below instead.</p>
+
+      <div class="contact-grid">
+        <form id="contactForm">
+          <div class="row2">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="sessionType">Session Type</label>
+              <select id="sessionType" name="sessionType">
+                <option>Family Session</option>
+                <option>Newborn &amp; Baby</option>
+                <option>Couples &amp; Engagement</option>
+                <option>Lifestyle &amp; Branding</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date">
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Tell me about your session</label>
+            <textarea id="message" name="message" placeholder="Who's involved, where you're picturing it, and anything else that helps."></textarea>
+          </div>
+          <button type="submit" class="btn">Send Inquiry</button>
+          <div id="formNote">Opening WhatsApp with your details ready to send — just hit send there to reach Precious Beauty Photos directly.</div>
+        </form>
+
+        <div>
+          <div class="info-block">
+            <h4>Service Area</h4>
+            <p>Based in Dallas, TX. Available throughout the DFW metroplex — Fort Worth, Plano, Frisco, McKinney, and beyond. Travel fees may apply past 30 miles.</p>
+          </div>
+          <div class="info-block">
+            <h4>Response Time</h4>
+            <p>I reply to every inquiry within 24 hours. Dates are held once a signed contract and deposit are received.</p>
+          </div>
+          <div class="info-block">
+            <h4>Studio Email</h4>
+            <p>hello@preciousbeautyphotos.com &middot; +1 (484) 561-3517</p>
+          </div>
+          <div class="info-block">
+            <h4>Follow Along</h4>
+            <div class="socials socials--tight">
+              <a href="#" aria-label="Instagram">IG</a>
+              <a href="#" aria-label="Facebook">FB</a>
+              <a href="#" aria-label="Pinterest">PT</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap u-narrow">
+      <div class="section-head u-no-max">
+        <span class="eyebrow">Before you write in</span>
+        <h2>A couple quick answers</h2>
+      </div>
+      <div id="faqListContact"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand footer-brand">Precious <span>Beauty</span> Photos</div>
+        <p class="footer-desc">Natural-light family, newborn, couples, and lifestyle photography — based in Dallas, shooting across the metroplex.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#home" data-page="home">Home</a></li>
+          <li><a href="#portfolio" data-page="portfolio">Portfolio</a></li>
+          <li><a href="#about" data-page="about">About</a></li>
+          <li><a href="#contact" data-page="contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="mailto:hello@preciousbeautyphotos.com">hello@preciousbeautyphotos.com</a></li>
+          <li><a href="https://wa.me/14845613517" target="_blank" rel="noopener">+1 (484) 561-3517</a></li>
+          <li><a href="#">Dallas, Texas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; 2026 Precious Beauty Photos. All rights reserved.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="Pinterest">PT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
