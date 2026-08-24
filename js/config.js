@@ -194,7 +194,56 @@ const SITE_CONFIG = {
         'Creative Studio',
         'Studio Session'
       ]
+    },
+
+    {
+      key: 'videography',
+      label: 'VID',
+      name: 'Videography',
+
+      items: [
+        {
+          type: 'video',
+          src: 'videos/engagement 4.mp4',
+          poster: 'videos/engagement-4-poster.jpg',
+          title: 'Engagement Film'
+        },
+        {
+          type: 'placeholder',
+          title: 'Wedding Film'
+        },
+        {
+          type: 'placeholder',
+          title: 'Event Highlights'
+        },
+        {
+          type: 'placeholder',
+          title: 'Brand Story'
+        }
+      ]
+    },
+
+    {
+      key: 'content',
+      label: 'CONTENT',
+      name: 'Content Creation',
+
+      items: [
+        {
+          type: 'placeholder',
+          title: 'Social Media Reels'
+        },
+        {
+          type: 'placeholder',
+          title: 'Brand Content'
+        },
+        {
+          type: 'placeholder',
+          title: 'Creative Campaigns'
+        }
+      ]
     }
+
 
   ]
 },

@@ -15,106 +15,103 @@
      page from SITE_CONFIG.portfolio, so the HTML doesn't hand-list them.
      ===================================================================== */
   const PortfolioGrid = {
+    init() {
+      const grid = document.getElementById('portfolioGrid');
+      if (!grid) return;
 
-  init() {
-    const grid = document.getElementById('portfolioGrid');
+      const { categories } = SITE_CONFIG.portfolio;
+      const aspectRatioClasses = ['g-tall', 'g-wide', 'g-square'];
 
-    if (!grid) return;
+      let html = '';
+      let totalItems = 0;
 
-    const { categories } = SITE_CONFIG.portfolio;
+      categories.forEach(category => {
+        const items = category.items || (category.images || []).map((src, index) => ({
+          type: 'image',
+          src,
+          title: category.spots[index % category.spots.length]
+        }));
 
-    const aspectRatioClasses = [
-      'g-tall',
-      'g-wide',
-      'g-square'
-    ];
+        items.forEach((item, index) => {
+          const number = String(index + 1).padStart(3, '0');
+          const title = item.title || category.name;
+          const aspect = aspectRatioClasses[totalItems % aspectRatioClasses.length];
 
-    let html = '';
-    let totalItems = 0;
-
-    categories.forEach(category => {
-
-      category.images.forEach((image, index) => {
-
-        const number = String(index + 1).padStart(3, '0');
-
-        const spot =
-          category.spots[index % category.spots.length];
-
-        const aspect =
-          aspectRatioClasses[totalItems % aspectRatioClasses.length];
-
-        html += this.renderFrame({
-          category,
-          spot,
-          number,
-          aspect,
-          image
+          html += this.renderFrame({ category, item, title, number, aspect });
+          totalItems++;
         });
-
-        totalItems++;
       });
 
-    });
+      grid.innerHTML = html;
+      this.renderCount(totalItems);
+    },
 
-    grid.innerHTML = html;
+    renderFrame({ category, item, title, number, aspect }) {
+      const caption = `${category.name} — ${title}`;
 
-    this.renderCount(totalItems);
-  },
+      if (item.type === 'video') {
+        return `
+          <button
+            type="button"
+            class="frame video-card ${aspect} reveal"
+            data-cat="${category.key}"
+            data-video-src="${item.src}"
+            data-video-title="${caption}"
+            aria-label="Play ${caption}"
+          >
+            <img class="frame-photo" src="${item.poster}" alt="${caption}">
+            <span class="video-shade"></span>
+            <span class="video-play" aria-hidden="true">▶</span>
+            <span class="video-kicker">WATCH FILM</span>
+            <div class="cap">
+              <span>${category.label}&middot;${number}</span>
+              <b>${title}</b>
+            </div>
+          </button>
+        `;
+      }
 
+      if (item.type === 'placeholder') {
+        return `
+          <div
+            class="frame portfolio-placeholder ${aspect} reveal"
+            data-cat="${category.key}"
+            data-caption="${caption}"
+          >
+            <div class="placeholder-inner">
+              <span class="placeholder-mark">✦</span>
+              <span class="placeholder-label">${category.name}</span>
+              <strong>${title}</strong>
+              <small>Coming Soon</small>
+            </div>
+            <div class="cap">
+              <span>${category.label}&middot;${number}</span>
+              <b>${title}</b>
+            </div>
+          </div>
+        `;
+      }
 
-  renderFrame({
-    category,
-    spot,
-    number,
-    aspect,
-    image
-  }) {
-
-    const caption =
-      `${category.name} — ${spot}`;
-
-    return `
-      <div
-        class="frame ${aspect} reveal"
-        data-cat="${category.key}"
-        data-caption="${caption}"
-      >
-
-        <img
-          class="frame-photo"
-          src="${image}"
-          alt="${caption}"
+      return `
+        <div
+          class="frame ${aspect} reveal"
+          data-cat="${category.key}"
+          data-caption="${caption}"
         >
-
-        <div class="cap">
-          <span>
-            ${category.label}&middot;${number}
-          </span>
-
-          <b>${spot}</b>
+          <img class="frame-photo" src="${item.src}" alt="${caption}">
+          <div class="cap">
+            <span>${category.label}&middot;${number}</span>
+            <b>${title}</b>
+          </div>
         </div>
+      `;
+    },
 
-      </div>
-    `;
-  },
-
-
-  renderCount(total) {
-
-    const countEl =
-      document.getElementById('portfolioCount');
-
-    if (countEl) {
-
-      countEl.textContent =
-        `${total} photographs in the collection.`;
-
+    renderCount(total) {
+      const countEl = document.getElementById('portfolioCount');
+      if (countEl) countEl.textContent = `${total} projects in the collection.`;
     }
-
-  }
-
-};
+  };
 
   /* =====================================================================
      PortfolioFilters — category filter buttons on the Portfolio page.
@@ -270,10 +267,10 @@
     },
 
     buildMessage({ name, email, sessionType, date, details }) {
-      let text = `Hi Precious Beauty Photos! I'd like to inquire about a session.\n\n`;
+      let text = `Hi Precious Beauty Photos! I'd like to inquire about a project.\n\n`;
       text += `Name: ${name}\n`;
       text += `Email: ${email}\n`;
-      text += `Session Type: ${sessionType}\n`;
+      text += `Service Type: ${sessionType}\n`;
       if (date) text += `Preferred Date: ${date}\n`;
       if (details) text += `Details: ${details}\n`;
       return text;
@@ -290,6 +287,52 @@
       if (link && SITE_CONFIG.bookingUrl) {
         link.href = SITE_CONFIG.bookingUrl;
       }
+    }
+  };
+
+  /* =====================================================================
+     VideoModal — opens portfolio films in a focused popup player.
+     ===================================================================== */
+  const VideoModal = {
+    init() {
+      this.modal = document.getElementById('videoModal');
+      this.player = document.getElementById('videoModalPlayer');
+      this.title = document.getElementById('videoModalTitle');
+      this.closeButton = document.getElementById('videoModalClose');
+
+      if (!this.modal || !this.player) return;
+
+      document.addEventListener('click', (event) => {
+        const card = event.target.closest('.video-card');
+        if (card) this.open(card);
+      });
+
+      if (this.closeButton) this.closeButton.addEventListener('click', () => this.close());
+      this.modal.addEventListener('click', (event) => {
+        if (event.target === this.modal) this.close();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && this.modal.classList.contains('open')) this.close();
+      });
+    },
+
+    open(card) {
+      this.player.src = card.dataset.videoSrc;
+      if (this.title) this.title.textContent = card.dataset.videoTitle || 'Video';
+      this.modal.classList.add('open');
+      this.modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      this.player.play().catch(() => {});
+    },
+
+    close() {
+      this.player.pause();
+      this.player.removeAttribute('src');
+      this.player.load();
+      this.modal.classList.remove('open');
+      this.modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
     }
   };
 
@@ -333,6 +376,7 @@
       MobileNav.init();
       ContactForm.init();
       BookingWidget.init();
+      VideoModal.init();
       ScrollReveal.init();      // must run after PortfolioGrid so new .reveal items are caught
     }
   };
