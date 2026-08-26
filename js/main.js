@@ -50,26 +50,42 @@
       const caption = `${category.name} — ${title}`;
 
       if (item.type === 'video') {
-        return `
-          <button
-            type="button"
-            class="frame video-card ${aspect} reveal"
-            data-cat="${category.key}"
-            data-video-src="${item.src}"
-            data-video-title="${caption}"
-            aria-label="Play ${caption}"
-          >
-            <img class="frame-photo" src="${item.poster}" alt="${caption}">
-            <span class="video-shade"></span>
-            <span class="video-play" aria-hidden="true">▶</span>
-            <span class="video-kicker">WATCH FILM</span>
-            <div class="cap">
-              <span>${category.label}&middot;${number}</span>
-              <b>${title}</b>
-            </div>
-          </button>
-        `;
-      }
+  return `
+    <button
+      type="button"
+      class="frame video-card ${aspect} reveal"
+      data-cat="${category.key}"
+      data-video-src="${item.src}"
+      data-video-title="${caption}"
+      aria-label="Play ${caption}"
+    >
+
+      <video
+        class="frame-photo video-preview"
+        src="${item.src}"
+        muted
+        playsinline
+        preload="metadata"
+      ></video>
+
+      <span class="video-shade"></span>
+
+      <span class="video-play" aria-hidden="true">
+        ▶
+      </span>
+
+      <span class="video-kicker">
+        WATCH FILM
+      </span>
+
+      <div class="cap">
+        <span>${category.label}&middot;${number}</span>
+        <b>${title}</b>
+      </div>
+
+    </button>
+  `;
+}
 
       if (item.type === 'placeholder') {
         return `
@@ -271,6 +287,7 @@
       text += `Name: ${name}\n`;
       text += `Email: ${email}\n`;
       text += `Service Type: ${sessionType}\n`;
+      text += `Payment Terms: 70% upfront to book, 30% due the day before the appointment\n`;
       if (date) text += `Preferred Date: ${date}\n`;
       if (details) text += `Details: ${details}\n`;
       return text;
@@ -278,17 +295,142 @@
   };
 
   /* =====================================================================
-     BookingWidget — points the "Book & Pay Now" button at the real
-     Square Appointments URL from config, once one is set.
+     BookingWidget — shows the 70/30 payment split for the selected service.
+     Only Portrait Photography has a confirmed website price right now.
+     Other services show "Custom quote" until the studio confirms pricing.
      ===================================================================== */
   const BookingWidget = {
     init() {
-      const link = document.getElementById('bookNowLink');
-      if (link && SITE_CONFIG.bookingUrl) {
-        link.href = SITE_CONFIG.bookingUrl;
+      this.link = document.getElementById('bookNowLink');
+      this.select = document.getElementById('sessionType');
+      this.serviceEl = document.getElementById('paymentService');
+      this.totalEl = document.getElementById('paymentTotal');
+      this.upfrontEl = document.getElementById('paymentUpfront');
+      this.balanceEl = document.getElementById('paymentBalance');
+      this.noteEl = document.getElementById('paymentSetupNote');
+
+      if (!this.link || !this.select) return;
+
+      this.select.addEventListener('change', () => this.update());
+      this.update();
+
+      this.link.addEventListener('click', (event) => {
+        const service = this.select.value;
+        const price = SITE_CONFIG.servicePrices[service];
+        const hasPaymentUrl = SITE_CONFIG.bookingUrl && SITE_CONFIG.bookingUrl !== '#';
+
+        if (!price) {
+          event.preventDefault();
+          document.getElementById('contactForm')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+
+        if (!hasPaymentUrl) {
+          event.preventDefault();
+          if (this.noteEl) {
+            this.noteEl.textContent = 'Payment checkout is not connected yet. Send an inquiry and the studio will confirm your booking details.';
+          }
+        }
+      });
+    },
+
+    update() {
+      const service = this.select.value;
+      const price = SITE_CONFIG.servicePrices[service];
+      const upfrontRate = SITE_CONFIG.paymentTerms.upfrontPercent / 100;
+      const balanceRate = SITE_CONFIG.paymentTerms.balancePercent / 100;
+
+      if (this.serviceEl) this.serviceEl.textContent = service;
+
+      if (price) {
+        const upfront = price * upfrontRate;
+        const balance = price * balanceRate;
+
+        if (this.totalEl) this.totalEl.textContent = this.money(price);
+        if (this.upfrontEl) this.upfrontEl.textContent = this.money(upfront);
+        if (this.balanceEl) this.balanceEl.textContent = this.money(balance);
+
+        this.link.textContent = `Pay ${this.money(upfront)} to Reserve`;
+        this.link.href = SITE_CONFIG.bookingUrl || '#';
+        this.link.target = '_blank';
+
+        if (this.noteEl) {
+          this.noteEl.textContent = SITE_CONFIG.bookingUrl && SITE_CONFIG.bookingUrl !== '#'
+            ? 'Secure checkout opens in a new tab.'
+            : 'Online payment checkout will activate once the studio payment link is connected.';
+        }
+      } else {
+        if (this.totalEl) this.totalEl.textContent = 'Custom quote';
+        if (this.upfrontEl) this.upfrontEl.textContent = '70% of quote';
+        if (this.balanceEl) this.balanceEl.textContent = '30% of quote';
+
+        this.link.textContent = 'Request a Quote';
+        this.link.href = '#contactForm';
+        this.link.removeAttribute('target');
+
+        if (this.noteEl) {
+          this.noteEl.textContent = 'After your quote is approved, 70% secures the booking and 30% is due the day before the appointment.';
+        }
       }
+    },
+
+    money(value) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      }).format(value);
     }
   };
+
+  /* =====================================================================
+   VideoPreview — silently plays portfolio videos on desktop hover.
+   ===================================================================== */
+const VideoPreview = {
+
+  init() {
+
+    const cards = document.querySelectorAll('.video-card');
+
+    if (!cards.length) return;
+
+    cards.forEach(card => {
+
+      const video = card.querySelector('.video-preview');
+
+      if (!video) return;
+
+
+      card.addEventListener('mouseenter', () => {
+
+        if (window.matchMedia('(hover: hover)').matches) {
+
+          video.muted = true;
+
+          video.play().catch(() => {});
+
+          card.classList.add('preview-playing');
+
+        }
+
+      });
+
+
+      card.addEventListener('mouseleave', () => {
+
+        video.pause();
+
+        video.currentTime = 0;
+
+        card.classList.remove('preview-playing');
+
+      });
+
+    });
+
+  }
+
+};
 
   /* =====================================================================
      VideoModal — opens portfolio films in a focused popup player.
@@ -369,15 +511,16 @@
      ===================================================================== */
   const App = {
     init() {
-      PortfolioGrid.init();     // must run before PortfolioFilters & ScrollReveal
-      PortfolioFilters.init();
-      FaqAccordion.init();
-      PageRouter.init();
-      MobileNav.init();
-      ContactForm.init();
-      BookingWidget.init();
-      VideoModal.init();
-      ScrollReveal.init();      // must run after PortfolioGrid so new .reveal items are caught
+      PortfolioGrid.init();
+PortfolioFilters.init();
+FaqAccordion.init();
+PageRouter.init();
+MobileNav.init();
+ContactForm.init();
+BookingWidget.init();
+VideoPreview.init();
+VideoModal.init();
+ScrollReveal.init(); // must run after PortfolioGrid so new .reveal items are caught
     }
   };
 

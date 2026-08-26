@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Precious Beauty Photos | Photography, Videography &amp; Content Creation</title>
-<meta name="description" content="Precious Beauty Photos — photography, videography, and content creation for portraits, celebrations, brands, and meaningful moments.">
+<title>Precious Beauty Photos | Pennsylvania Photography, Videography &amp; Content Creation</title>
+<meta name="description" content="Precious Beauty Photos — Pennsylvania-based photography, videography, and content creation for portraits, celebrations, brands, and meaningful moments.">
 
 <!--
   PLACEHOLDER NOTICE FOR THE STUDIO OWNER / DEVELOPER
@@ -200,7 +200,7 @@
         >
         <div class="cap">
           <span>CPL·021</span>
-          <b>Bishop Arts</b>
+          <b>Engagement Portrait</b>
         </div>
       </div>
 
@@ -236,7 +236,7 @@
         >
         <div class="cap">
           <span>FAM·027</span>
-          <b>Klyde Warren Park</b>
+          <b>Golden Hour Park</b>
         </div>
       </div>
 
@@ -266,7 +266,7 @@
         <div class="frame" data-caption="The Alvarez Family"><div class="cap"><span>N&deg; 014</span><b>EXP</b></div></div>
       </div>
       <div>
-        <blockquote>"Our session at White Rock Lake felt effortless. Precious Beauty Photos captured our family exactly as we are — not posed, just us."</blockquote>
+        <blockquote>"Our session felt effortless. Precious Beauty Photos captured our family exactly as we are — not posed, just us."</blockquote>
         <cite>— The Alvarez Family, Family Session</cite>
       </div>
     </div>
@@ -341,10 +341,10 @@
         <span class="eyebrow">About</span>
         <h2 class="about-heading">Hi, I'm Precious Emmanuela.</h2>
         <p>
-          I started Precious Beauty Photos after realizing most of my own family photos were phone snapshots taken mid-argument about nap time — and that the ones I actually treasured were never the posed ones. Ten years and a few hundred sessions later, that's still the whole point: real light, real people, minimal fuss.
+          I’m Precious Emmanuela, the creative behind Precious Beauty Photos. My work is centered on warm, polished imagery that still feels personal — from portraits and family milestones to films and content created for brands.
         </p>
         <p>
-          Based in Pennsylvania USA, I create photography, videography, and visual content for families, couples, celebrations, and growing brands — from intimate portraits to stories built for the screen.
+          Based in Pennsylvania, USA, I offer photography, videography, and content creation for individuals, families, couples, celebrations, and growing businesses. I’m also available for travel depending on the project.
         </p>
       </div>
     </div>
@@ -391,10 +391,10 @@
         <h2>A few quick facts</h2>
       </div>
       <ul class="facts-list">
-        <li>&middot; Based in Pennsylvania USA — shooting across the DFW metroplex</li>
-        <li>&middot; Shoots primarily on location — parks, homes, and downtown streets</li>
-        <li>&middot; Second-generation Texan, first-generation dog mom</li>
-        <li>&middot; Believes the best light is 45 minutes before sunset</li>
+        <li>&middot; Based in Pennsylvania, USA</li>
+        <li>&middot; Photography, videography, and content creation</li>
+        <li>&middot; Available for portraits, celebrations, events, and brand projects</li>
+        <li>&middot; Travel availability can be discussed during inquiry</li>
       </ul>
     </div>
   </section>
@@ -421,14 +421,37 @@
       <!-- Booking widget: href is set at runtime by the BookingWidget module
            in js/main.js, from SITE_CONFIG.bookingUrl in js/config.js. -->
       <div class="book-widget">
-        <div>
-          <span class="eyebrow">Fastest way to book</span>
-          <h3>Book &amp; pay online</h3>
-          <p>Choose an eligible session and complete your payment online. Videography and content creation are quoted individually.</p>
+        <div class="book-widget-copy">
+          <span class="eyebrow">Secure your date</span>
+          <h3>70% to book. 30% before your session.</h3>
+          <p>Pay 70% of your confirmed session total when you book. The remaining 30% is due the day before your appointment.</p>
+
+          <div class="payment-breakdown" id="paymentBreakdown" aria-live="polite">
+            <div class="payment-row">
+              <span>Selected service</span>
+              <strong id="paymentService">Portrait Photography</strong>
+            </div>
+            <div class="payment-row">
+              <span>Session total</span>
+              <strong id="paymentTotal">$350</strong>
+            </div>
+            <div class="payment-row payment-row--accent">
+              <span>Due now · 70%</span>
+              <strong id="paymentUpfront">$245</strong>
+            </div>
+            <div class="payment-row">
+              <span>Due the day before · 30%</span>
+              <strong id="paymentBalance">$105</strong>
+            </div>
+          </div>
         </div>
-        <a href="#" id="bookNowLink" class="btn on-dark" target="_blank" rel="noopener">Book &amp; Pay Now</a>
+
+        <div class="book-widget-action">
+          <a href="#" id="bookNowLink" class="btn on-dark" target="_blank" rel="noopener">Pay $245 to Reserve</a>
+          <small id="paymentSetupNote">Online payment checkout will activate once the studio payment link is connected.</small>
+        </div>
       </div>
-      <p class="book-widget-hint">Prefer to talk first? Send an inquiry below instead.</p>
+      <p class="book-widget-hint">Services without a confirmed website price are quoted first, then follow the same 70% / 30% payment schedule.</p>
 
       <div class="contact-grid">
         <form id="contactForm">
@@ -446,10 +469,17 @@
             <div class="field">
               <label for="sessionType">Service Type</label>
               <select id="sessionType" name="sessionType">
-                <option>Family Session</option>
+                <option>Portrait Photography</option>
+                <option>Family Photography</option>
                 <option>Newborn &amp; Baby</option>
                 <option>Couples &amp; Engagement</option>
                 <option>Lifestyle &amp; Branding</option>
+                <option>Wedding Photography</option>
+                <option>Event Photography</option>
+                <option>Corporate Headshots</option>
+                <option>Birthday Sessions</option>
+                <option>Graduation Shoots</option>
+                <option>Studio Photography</option>
                 <option>Videography</option>
                 <option>Content Creation</option>
                 <option>Not sure yet</option>
@@ -471,11 +501,11 @@
         <div>
           <div class="info-block">
             <h4>Service Area</h4>
-            <p>Based in Dallas, TX. Available throughout the DFW metroplex — Fort Worth, Plano, Frisco, McKinney, and beyond. Travel fees may apply past 30 miles.</p>
+            <p>Based in Pennsylvania, USA. Available for sessions and projects across Pennsylvania, with travel available depending on the location and project.</p>
           </div>
           <div class="info-block">
             <h4>Response Time</h4>
-            <p>I reply to every inquiry within 24 hours. Dates are held once a signed contract and deposit are received.</p>
+            <p>I reply to every inquiry within 24 hours. Your date is secured after the booking is confirmed and the 70% upfront payment is received. The final 30% is due the day before your appointment.</p>
           </div>
           <div class="info-block">
             <h4>Studio Email</h4>
@@ -484,9 +514,7 @@
           <div class="info-block">
             <h4>Follow Along</h4>
             <div class="socials socials--tight">
-              <a href="#" aria-label="Instagram">IG</a>
-              <a href="#" aria-label="Facebook">FB</a>
-              <a href="#" aria-label="Pinterest">PT</a>
+              <a class="social-link" href="https://www.instagram.com/preciousbeautyphotos?igsi=YXdrMzc3eGZzcmU2" target="_blank" rel="noopener noreferrer" aria-label="Precious Beauty Photos on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.6" r="1"></circle></svg></a>
             </div>
           </div>
         </div>
@@ -527,7 +555,7 @@
     <div class="foot-grid">
       <div>
         <div class="brand footer-brand">Precious <span>Beauty</span> Photos</div>
-        <p class="footer-desc">Photography, videography, and content creation for people, celebrations, and brands.</p>
+        <p class="footer-desc">Pennsylvania-based photography, videography, and content creation for people, celebrations, and brands.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -543,16 +571,14 @@
         <ul>
           <li><a href="mailto:hello@preciousbeautyphotos.com">hello@preciousbeautyphotos.com</a></li>
           <li><a href="https://wa.me/14845613517" target="_blank" rel="noopener">+1 (484) 561-3517</a></li>
-          <li><a href="#">Dallas, Texas</a></li>
+          <li><span>Pennsylvania, USA</span></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
       <p>&copy; 2026 Precious Beauty Photos. All rights reserved.</p>
       <div class="socials">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Facebook">FB</a>
-        <a href="#" aria-label="Pinterest">PT</a>
+        <a class="social-link" href="https://www.instagram.com/preciousbeautyphotos?igsi=YXdrMzc3eGZzcmU2" target="_blank" rel="noopener noreferrer" aria-label="Precious Beauty Photos on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.6" r="1"></circle></svg></a>
       </div>
     </div>
   </div>

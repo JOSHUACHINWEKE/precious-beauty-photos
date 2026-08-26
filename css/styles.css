@@ -714,3 +714,145 @@ body.modal-open{overflow:hidden;}
   .video-modal-head{padding:16px;}
   .video-play{width:58px;height:58px;font-size:18px;}
 }
+/* ---------- Hover video preview ---------- */
+
+.video-preview {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  display: block;
+
+  background: var(--plum-dark);
+}
+
+
+/* Smooth video appearance */
+.video-card .video-preview {
+  transform: scale(1);
+  filter: brightness(.82) saturate(.9);
+
+  transition:
+    transform .6s ease,
+    filter .6s ease;
+}
+
+
+/* Slight cinematic zoom when preview plays */
+.video-card.preview-playing .video-preview {
+  transform: scale(1.045);
+  filter: brightness(.9) saturate(1);
+}
+
+
+/* Fade the play button slightly while preview is playing */
+.video-card.preview-playing .video-play {
+  opacity: .28;
+  transform:
+    translate(-50%, -50%)
+    scale(.9);
+}
+
+
+/* Make the overlay lighter during preview */
+.video-card.preview-playing .video-shade {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20,10,30,.02),
+      rgba(20,10,30,.24)
+    );
+}
+
+
+/* Keep play button transitions smooth */
+.video-play {
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    opacity .25s ease;
+}
+
+
+/* ---------- Payment split + social icon refinements ---------- */
+.book-widget-copy{flex:1 1 520px;}
+.book-widget-action{
+  flex:0 1 260px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+  position:relative;
+  z-index:2;
+}
+.book-widget-action small{
+  color:rgba(255,255,255,.68);
+  font-size:11px;
+  line-height:1.5;
+  max-width:250px;
+}
+.payment-breakdown{
+  margin-top:22px;
+  width:min(520px,100%);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;
+  overflow:hidden;
+  background:rgba(255,255,255,.06);
+}
+.payment-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:11px 15px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.76);
+  font-size:12px;
+}
+.payment-row:last-child{border-bottom:0;}
+.payment-row strong{color:#fff;font-size:13px;text-align:right;}
+.payment-row--accent{
+  background:rgba(198,161,91,.13);
+}
+.payment-row--accent span,
+.payment-row--accent strong{color:var(--gold-light);}
+
+.social-link{
+  width:40px !important;
+  height:40px !important;
+  display:grid !important;
+  place-items:center;
+  border-radius:50%;
+  transition:transform .25s ease,border-color .25s ease,background .25s ease,color .25s ease;
+}
+.social-link svg{
+  width:19px;
+  height:19px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+}
+.social-link:hover{transform:translateY(-2px);}
+.info-block .social-link{
+  border:1px solid var(--line);
+  color:var(--purple);
+  background:var(--paper-light);
+}
+.info-block .social-link:hover{
+  border-color:var(--purple);
+  background:var(--purple);
+  color:#fff;
+}
+footer .social-link{color:var(--paper);}
+
+@media(max-width:700px){
+  .book-widget-action{flex-basis:100%;width:100%;}
+  .book-widget-action .btn{width:100%;justify-content:center;}
+  .book-widget-action small{max-width:none;}
+  .payment-row{align-items:flex-start;}
+}
