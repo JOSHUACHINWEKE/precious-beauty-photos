@@ -1,0 +1,18 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null
+        && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid))
+        && firestore.get(/databases/(default)/documents/admins/$(request.auth.uid)).data.role in ['super_admin','business_admin'];
+    }
+    match /portfolio/{itemId}/{filename} {
+      allow read: if true; // Portfolio uploads are public; do not upload private client photos.
+      allow create: if isAdmin() && request.resource.size < 10 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+    match /{allPaths=**} { allow read, write: if false; }
+  }
+}

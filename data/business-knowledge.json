@@ -1,0 +1,181 @@
+{
+  "name": "Precious Beauty Photos",
+  "location": "Pennsylvania, USA",
+  "phone": "+1 (484) 561-3517",
+  "services": {
+    "Portrait Photography": 650,
+    "Family Photography": 2500,
+    "Newborn & Baby": null,
+    "Couples & Engagement": null,
+    "Lifestyle & Branding": 750,
+    "Wedding Photography": null,
+    "Event Photography": 850,
+    "Corporate Headshots": null,
+    "Birthday Sessions": null,
+    "Graduation Shoots": 600,
+    "Studio Photography": 1500,
+    "Videography": null,
+    "Content Creation": null,
+    "Not sure yet": null,
+    "Maternity": 700,
+    "Personal Branding": 750
+  },
+  "paymentTerms": {
+    "upfrontPercent": 70,
+    "balancePercent": 30,
+    "balanceDue": "seven days before the session or event",
+    "policy": "Signed agreement and 70% retainer required to reserve a date. No photography or gallery release with unpaid charges. Additional edits, time and changes require written approval and payment. Non-refundable wording pending legal review."
+  },
+  "faqs": [
+    {
+      "q": "What areas do you serve?",
+      "a": "Precious Beauty Photos is based in Pennsylvania, USA. Local and travel availability can be discussed when you inquire about your session or project."
+    },
+    {
+      "q": "What should we wear?",
+      "a": "Coordinate, don't match — choose two or three colors that work well together and let each person vary within that palette. Styling can also be discussed before your session."
+    },
+    {
+      "q": "How long is a session?",
+      "a": "Session length depends on the service selected. Newborn sessions generally need more time for feeding, settling, and breaks, while other portrait sessions can be confirmed during booking."
+    },
+    {
+      "q": "When will we get our photos or video?",
+      "a": "Delivery timing depends on the type and size of the project. Your expected turnaround will be confirmed when the booking details are finalized."
+    },
+    {
+      "q": "How does payment work?",
+      "a": "Signed agreement and 70% retainer required to reserve a date. No photography or gallery release with unpaid charges. Additional edits, time and changes require written approval and payment. Non-refundable wording pending legal review. Balance is due seven days before the session or event."
+    },
+    {
+      "q": "How do I book a session?",
+      "a": "Complete the website inquiry form; studio reviews scope and availability, issues contract and invoice together. Signed agreement and retainer reserve date. Square is not connected."
+    }
+  ],
+  "booking": "Complete the website inquiry form; studio reviews scope and availability, issues contract and invoice together. Signed agreement and retainer reserve date. Square is not connected.",
+  "packages": {
+    "Portrait Photography": [
+      {
+        "name": "Signature Portrait",
+        "price": 650,
+        "inclusions": "Pre-session consultation; up to 45 minutes; one location or studio setup; one outfit; eight fully retouched images; private online gallery; additional images $40 each."
+      },
+      {
+        "name": "Elevated Portrait",
+        "price": 950,
+        "inclusions": "Styling consultation; up to 90 minutes; two outfits; two coordinated setups; fifteen fully retouched images; one 11×14 professional print; social-media highlight reel."
+      },
+      {
+        "name": "Luxury Portrait Experience",
+        "price": 1500,
+        "inclusions": "Concept-development call; up to two hours; three outfits; up to three setups; 25 fully retouched images; short cinematic video; one 16×20 wall portrait; priority editing. GWBYELLA hair styling subject to cost and scope confirmation."
+      }
+    ],
+    "Maternity": [
+      {
+        "name": "Essential",
+        "price": 700,
+        "inclusions": ""
+      },
+      {
+        "name": "Signature",
+        "price": 1100,
+        "inclusions": ""
+      },
+      {
+        "name": "Luxury maternity experience",
+        "price": 1650,
+        "inclusions": ""
+      }
+    ],
+    "Personal Branding": [
+      {
+        "name": "Brand Refresh",
+        "price": 750,
+        "inclusions": ""
+      },
+      {
+        "name": "Brand Story",
+        "price": 1250,
+        "inclusions": ""
+      },
+      {
+        "name": "Brand Campaign",
+        "price": 1850,
+        "inclusions": ""
+      }
+    ],
+    "Graduation": [
+      {
+        "name": "Signature Graduate",
+        "price": 600,
+        "inclusions": ""
+      },
+      {
+        "name": "Graduate Plus",
+        "price": 900,
+        "inclusions": ""
+      },
+      {
+        "name": "Ultimate Graduate Experience",
+        "price": 1350,
+        "inclusions": ""
+      }
+    ],
+    "Event Photography": [
+      {
+        "name": "Petite Event",
+        "price": 850,
+        "inclusions": "2 hours; 75+ edited images."
+      },
+      {
+        "name": "Signature Event",
+        "price": 1500,
+        "inclusions": "4 hours; 175+ edited images."
+      },
+      {
+        "name": "Premier Event",
+        "price": 2100,
+        "inclusions": "6 hours; 275+ edited images."
+      },
+      {
+        "name": "Full Celebration",
+        "price": 5000,
+        "inclusions": "8 hours; 400+ edited images. Final scope confirmed during consultation."
+      },
+      {
+        "name": "Five-Hour Event",
+        "price": 3750,
+        "inclusions": "5 hours; edited image count and final scope confirmed during consultation."
+      },
+      {
+        "name": "Photo + Video",
+        "price": null,
+        "inclusions": "Custom coverage and deliverables."
+      }
+    ],
+    "Home Studio": [
+      {
+        "name": "Home Studio Session",
+        "price": 1500,
+        "inclusions": "2 hours; 15 edited images. Other scope details confirmed during consultation."
+      }
+    ],
+    "Family Photography": [
+      {
+        "name": "Family Session",
+        "price": 2500,
+        "inclusions": "Participants, households, combinations, deliverables and location confirmed during consultation."
+      }
+    ]
+  },
+  "scope": "Only agreed people, households, outfits, locations, setups and combinations are included. Individual portraits and branding are not guaranteed in group sessions. Extra participants or changes require approval, availability and applicable payment before photography. Separate households, businesses or independent galleries may be separate sessions.",
+  "hair": "GWBYELLA hair styling proposed for luxury portrait, subject to cost and scope confirmation; makeup separately invoiced partner add-on. Hair website on hold.",
+  "pricingClarifications": [
+    "Client corrected five-hour event price to $3,750 (not $2,750).",
+    "Eight-hour event price is $5,000.",
+    "Photo and video starting price remains unconfirmed.",
+    "Maternity, branding and graduation inclusions not confirmed.",
+    "GWBYELLA hair styling cost and inclusion not confirmed."
+  ]
+}

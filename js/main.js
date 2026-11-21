@@ -114,7 +114,7 @@
           data-cat="${category.key}"
           data-caption="${caption}"
         >
-          <img class="frame-photo" src="${item.src}" alt="${caption}">
+          <img class="frame-photo" src="${item.src}" alt="${caption}" loading="lazy" decoding="async">
           <div class="cap">
             <span>${category.label}&middot;${number}</span>
             <b>${title}</b>
@@ -150,6 +150,7 @@
       const filter = activeBtn.dataset.filter;
       document.querySelectorAll('#portfolioGrid .frame').forEach(card => {
         const matches = filter === 'all' || card.dataset.cat === filter;
+        card.hidden = !matches;
         card.style.display = matches ? '' : 'none';
       });
     }
@@ -202,14 +203,19 @@
     init() {
       this.pages = document.querySelectorAll('.page');
       this.navLinks = document.querySelectorAll('nav.links a[data-page]');
+      window.addEventListener('hashchange', () => {
+        const name = location.hash.slice(1);
+        if (SITE_CONFIG.pages.includes(name)) this.show(name);
+      });
       const allDataPageLinks = document.querySelectorAll('a[data-page]');
 
       allDataPageLinks.forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
           const name = link.dataset.page;
-          history.replaceState(null, '', '#' + name);
+          if(location.hash !== '#' + name) history.pushState(null, '', '#' + name);
           this.show(name);
+          if(link.hasAttribute('data-inquiry')) requestAnimationFrame(() => document.getElementById('inquiry')?.scrollIntoView({behavior:'instant',block:'start'}));
         });
       });
 
@@ -229,11 +235,15 @@
       void target.offsetWidth;
       target.classList.add('active');
 
-      this.navLinks.forEach(a => a.classList.toggle('active', a.dataset.page === name));
+      this.navLinks.forEach(a => { const active = a.dataset.page === name && !a.hasAttribute('data-inquiry'); a.classList.toggle('active', active); if(active) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
       window.scrollTo(0, 0);
 
       const navLinksContainer = document.getElementById('navLinks');
       if (navLinksContainer) navLinksContainer.classList.remove('open');
+      const toggle = document.getElementById('menuToggle');
+      if (toggle) { toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open navigation'); }
+      // Re-observe reveals when navigating to a previously hidden page.
+      target.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
   };
 
@@ -246,7 +256,21 @@
       const links = document.getElementById('navLinks');
       if (!toggle || !links) return;
 
-      toggle.addEventListener('click', () => links.classList.toggle('open'));
+      toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && links.classList.contains('open')) {
+          links.classList.remove('open');
+          toggle.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label','Open navigation');
+          toggle.focus();
+        }
+      });
     }
   };
 
@@ -258,7 +282,7 @@
   const ContactForm = {
     init() {
       const form = document.getElementById('contactForm');
-      if (!form) return;
+      if (!form || form.tagName !== 'FORM') return;
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -312,6 +336,12 @@
       if (!this.link || !this.select) return;
 
       this.select.addEventListener('change', () => this.update());
+      const dateField = document.getElementById('date');
+      if (dateField) {
+        const now = new Date();
+        const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+        dateField.min = localDate;
+      }
       this.update();
 
       this.link.addEventListener('click', (event) => {
@@ -327,8 +357,9 @@
 
         if (!hasPaymentUrl) {
           event.preventDefault();
+          document.getElementById('contactForm')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           if (this.noteEl) {
-            this.noteEl.textContent = 'Payment checkout is not connected yet. Send an inquiry and the studio will confirm your booking details.';
+            this.noteEl.textContent = 'Ask Precious AI or call the studio to discuss availability. No payment is taken on this website yet.';
           }
         }
       });
@@ -350,9 +381,13 @@
         if (this.upfrontEl) this.upfrontEl.textContent = this.money(upfront);
         if (this.balanceEl) this.balanceEl.textContent = this.money(balance);
 
-        this.link.textContent = `Pay ${this.money(upfront)} to Reserve`;
+        this.link.textContent = SITE_CONFIG.bookingUrl && SITE_CONFIG.bookingUrl !== '#'
+          ? `Continue to Booking` : 'Request This Session';
         this.link.href = SITE_CONFIG.bookingUrl || '#';
-        this.link.target = '_blank';
+        if (SITE_CONFIG.bookingUrl && SITE_CONFIG.bookingUrl !== '#') {
+          this.link.target = '_blank';
+          this.link.rel = 'noopener noreferrer';
+        } else { this.link.removeAttribute('target'); }
 
         if (this.noteEl) {
           this.noteEl.textContent = SITE_CONFIG.bookingUrl && SITE_CONFIG.bookingUrl !== '#'
@@ -516,8 +551,8 @@ PortfolioFilters.init();
 FaqAccordion.init();
 PageRouter.init();
 MobileNav.init();
-ContactForm.init();
-BookingWidget.init();
+// Legacy WhatsApp inquiry disabled.
+// Legacy instant checkout disabled.
 VideoPreview.init();
 VideoModal.init();
 ScrollReveal.init(); // must run after PortfolioGrid so new .reveal items are caught
